@@ -1025,6 +1025,18 @@ securitySchemes:
               <sslEnabled></sslEnabled>
             </controllerConfig>
           schema: clusterUpdate
+    /upgrade:
+      displayName: nsxControllerClusterUpgrade
+      description: |
+        Upgrade controller cluster  
+      get:
+        displayName: nsxControllerClusterUpgraderead
+        description: |
+          Read controller upgrade status
+      post:
+        displayName: nsxControllerClusterUpgradepost
+        description: |
+          Upgrade controller cluster 
   /credential:
     displayName: nsxControllerPassword
     description: Change the NSX controller password
@@ -1180,7 +1192,7 @@ securitySchemes:
                 <objectTypeName></objectTypeName>
                 <name></name>
               </scope>
-              <extendedAttributes></extendedAttributes>
+              <extendedAttributes></extendedAttrubutes>
               <inheritanceAllowed></inheritanceAllowed>
               <member>
                 <objectId></objectId>
@@ -1702,7 +1714,7 @@ securitySchemes:
                   <name></name>
                 </scope>
                 <clientHandle></clientHandle>
-                <extendedAttributes></extendedAttributes>
+                <extendedAttributes><extendedAttributes/>
               </excludeMember>
               <dynamicMemberDefinition>
                 <dynamicSet>
@@ -4337,7 +4349,6 @@ securitySchemes:
                     <subProtocol></subProtocol>
                   </service>
                 </services>
-              </rule>
             </section>
            schema: dfwSection
       /{sectionId}:
