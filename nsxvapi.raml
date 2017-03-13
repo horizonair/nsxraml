@@ -1025,6 +1025,18 @@ securitySchemes:
               <sslEnabled></sslEnabled>
             </controllerConfig>
           schema: clusterUpdate
+    /upgrade:
+      displayName: nsxControllerClusterUpgrade
+      description: |
+        Upgrade controller cluster  
+      get:
+        displayName: nsxControllerClusterUpgraderead
+        description: |
+          Read controller upgrade status
+      post:
+        displayName: nsxControllerClusterUpgradepost
+        description: |
+          Upgrade controller cluster 
   /credential:
     displayName: nsxControllerPassword
     description: Change the NSX controller password
@@ -1039,7 +1051,7 @@ securitySchemes:
             </controllerCredential>
           schema: nsxControllerPasswordUpdate
 /2.0/services/application/scope/{scopeId}:
-  displayName: servicesScopeGet
+  displayName: servicesScope
   description: Working with services on a scope
   uriParameters:
     scopeId:
@@ -1051,16 +1063,6 @@ securitySchemes:
   get:
     displayName: servicesScopeRead
     description: List services that have been created on the scope
-/2.0/services/application/{scopeId}:
-  displayName: servicesScope
-  description: Working with services on a scope
-  uriParameters:
-    scopeId:
-      required: true
-      displayName: scopeId
-      description: |
-        Can be "globalroot-0", "universalroot-0" or datacenterId in upgrade use
-        cases.
   post:
     displayName: servicesScopeCreate
     description: Create a new service on the specified scope
@@ -1190,7 +1192,7 @@ securitySchemes:
                 <objectTypeName></objectTypeName>
                 <name></name>
               </scope>
-              <extendedAttributes></extendedAttributes>
+              <extendedAttributes></extendedAttrubutes>
               <inheritanceAllowed></inheritanceAllowed>
               <member>
                 <objectId></objectId>
@@ -1712,7 +1714,7 @@ securitySchemes:
                   <name></name>
                 </scope>
                 <clientHandle></clientHandle>
-                <extendedAttributes></extendedAttributes>
+                <extendedAttributes><extendedAttributes/>
               </excludeMember>
               <dynamicMemberDefinition>
                 <dynamicSet>
@@ -4347,7 +4349,6 @@ securitySchemes:
                     <subProtocol></subProtocol>
                   </service>
                 </services>
-              </rule>
             </section>
            schema: dfwSection
       /{sectionId}:
