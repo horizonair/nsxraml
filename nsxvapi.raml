@@ -160,6 +160,40 @@ schemas:
 securitySchemes:
   - basic:
       type: Basic Authentication
+
+/1.0/nsx/cli:
+  displayName: nsxCli
+  description: |
+    Working with the Central CLI
+    =======
+  post:
+    displayName: nsxCliExecute
+    description: |
+      The central command-line interface (central CLI) commands are run from the
+      NSX Manager command line, and retrieve information from the NSX Manager and other
+      devices. These commands can also be executed in the API.
+
+      You can insert any valid Central CLI command as the **command**
+      parameter. For a complete list of the Central CLI commands executable
+      through the API, please see the Central CLI chapter of the *NSX Command
+      Line Interface Reference*.
+    queryParameters:
+      action:
+        displayName: action
+        description: Use *action=execute*.
+        required: true
+    headers:
+      Accept:
+        displayName: Accept
+        description: Specify *text/plain*.
+        required: true
+    body:
+      application/xml:
+        example: |
+          <nsxcli>
+            <command>show logical-switch list host host-21 vni</command>
+          </nsxcli>
+
 /2.0/vdn/switches:
   displayName: vdsManage
   description: |
@@ -8316,7 +8350,7 @@ securitySchemes:
         description: |
           Retrieve job status (SUCCESS/FAILED/QUEUED/RUNNING/ROLLBACK), URI of
           the resource, and ID of the resource as shown in response body
-/3.0/edges/{edgeID}:
+/4.0/edges/{edgeID}:
   displayName: nsxEdgeUpgrade
   description: Upgrading NSX Edge
   uriParameters:
