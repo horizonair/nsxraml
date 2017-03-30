@@ -2015,12 +2015,23 @@ securitySchemes:
     get:
       displayName: universalSyncConfigurationRoleRead
       description: Retrieve the universal sync configuration role.
-    /nsxmanagers:
+  /configuration/nsxmanagers:
       displayName: universalSyncConfigurationNsxManagers
-      description: Universal sync configuration of NSX managers
+      description: |
+        Working with Universal Sync Configuration of NSX Managers
+        -----
       post:
         displayName: universalSyncConfigurationNsxManagersCreate
-        description: Create a secondary NSX manager
+        description: |
+          Add a secondary NSX manager.
+
+          Run this method on the primary NSX Manager, providing details of the
+          secondary NSX Manager.
+
+          Retrieve the certificate thumbprint of the secondary NSX Manager
+          using the `GET
+          /api/1.0/appliance-management/certificatemanager/certificates/nsx`
+          method. The **sha1Hash** parameter contains the thumbprint.
         body:
           application/xml:
             example: |
@@ -2032,37 +2043,34 @@ securitySchemes:
                 <isPrimary></isPrimary>
               </nsxManagerInfo>
             schema: universalSyncConfigurationNsxManagersCreate
+      get:
+        displayName: universalSyncConfigurationNsxManagersList
+        description: |
+          If run on a primary NSX Manager, it will list secondary NSX Managers
+          configured on the primary NSX Manager.
+
+          If run on a secondary NSX Manager, it will list information about
+          the secondary NSX Manager and the primary NSX Manager it is
+          associated with.
       delete:
         displayName: universalSyncConfigurationNsxManagersDelete
-        description: Delete secondary NSX manager configuration
-      /thumbprint:
-        displayName: universalSyncConfigurationNsxManagersThumbprint
-        description: Universal sync configuration NSX manager thumbprint
-        put:
-          displayName: universalSyncConfigurationNsxManagersThumbprintUpdate
-          description: |
-            Update the NSX manager thumprint in the universal sync configuration
-          body:
-            application/xml:
-              example: |
-                <nsxManagerInfo>
-                  <uuid></uuid>
-                  <nsxManagerIp></nsxManagerIp>
-                  <certificateThumbprint></certificateThumbprint>
-                  <isPrimary></isPrimary>
-                </nsxManagerInfo>
-              schema: universalSyncConfigurationManagersThumbprintUpdate
+        description: Delete secondary NSX manager configuration.
       /{nsxManagerID}:
         displayName: universalSyncConfigurationManagers
-        description: Universal sync configuration of a specific NSX manager
+        description: |
+          Universal Sync Configuration of a Specific NSX Manager
+          ----
+        uriParameters:
+          nsxManagerID:
+            displayName: nsxManagerID
+            description: NSX Manager UUID.
         get:
           displayName: universalSyncConfigurationManagersRead
           description: |
-            Query universal sync configuration information on a specific NSX
-            manager by ID
+            Retrieve information about the specified secondary NSX Manager.
         delete:
           displayName: universalSyncConfigurationManagersDelete
-          description: Delete a secondary NSX manager by ID.
+          description: Delete the specified secondary NSX Manager.
           queryParameters:
             forceRemoval:
               type: boolean
@@ -2071,6 +2079,20 @@ securitySchemes:
               description: |
                 Force removal of a secondary NSX manager. Options are true and
                 false.
+        put:
+          displayName: universalSyncConfigurationManagersUpdate
+          description: |
+            Update the the specified secondary NSX manager IP or thumbprint in
+            the universal sync configuration.
+          body:
+            application/xml:
+              example: |
+                <nsxManagerInfo>
+                  <uuid></uuid>
+                  <nsxManagerIp></nsxManagerIp>
+                  <certificateThumbprint></certificateThumbprint>
+                </nsxManagerInfo>
+              schema: universalSyncConfigurationManagersUpdate.xsd
   /sync:
     displayName: universalSyncSync
     description: Sync all objects on the NSX manager
