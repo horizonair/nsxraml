@@ -1987,23 +1987,34 @@ securitySchemes:
       description: Get default vCenter Server connection status
 /2.0/universalsync:
   displayName: universalSync
-  description: Configuring Universal Sync for the NSX manager
-  /configuration:
-    /role:
-      displayName: universalSyncConfigurationRole
-      description: Universal Sync Configuration
-      post:
-        displayName: universalSyncConfigurationRoleSet
-        description: Set the Universal Sync Configuration role
-        queryParameters:
-          action:
-            displayName: action
-            description: |
-              Set the role of the NSX manager. Possible values are
-              set-as-standalone, set-as-primary, set-as-secondary
-      get:
-        displayName: universalSyncConfigurationRoleRead
-        description: Get the Universal Sync Configuration role
+  description: |
+    Working with Universal Sync Configuration in Cross-vCenter NSX
+    ======
+  /configuration/role:
+    displayName: universalSyncConfigurationRole
+    description: |
+      Working with Universal Sync Configuration Roles
+      ----
+      You can set the role of an NSX Manager to primary, secondary, or
+      standalone. If you set an NSX Manager’s role to primary, then use it to
+      create universal objects, and then set the role to standalone, the role
+      will be set as transit. In the transit role, the universal objects will
+      still exist, but cannot be modified, other than being deleted.
+    post:
+      displayName: universalSyncConfigurationRoleSet
+      description: Set the universal sync configuration role.
+      queryParameters:
+        action:
+          displayName: action
+          description: |
+            Set the role of the NSX manager. Possible values are
+            *set-as-standalone*, or *set-as-primary*. To set an NSX Manager as
+            secondary, use the `POST
+            /api/2.0/universalsync/configuration/nsxmanagers` method on the
+            primary NSX Manager.
+    get:
+      displayName: universalSyncConfigurationRoleRead
+      description: Retrieve the universal sync configuration role.
     /nsxmanagers:
       displayName: universalSyncConfigurationNsxManagers
       description: Universal sync configuration of NSX managers
