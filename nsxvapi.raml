@@ -7877,7 +7877,20 @@ securitySchemes:
             required: true
             displayName: interval
             description: Specify a start and end time range in seconds
-     /statistics/dashboard/firewall:
+    /statistics/dashboard/loadbalancer:
+      displayName: loadbalancerStats
+      description: Dashboard statistics
+      get:
+        displayName: loadbalancerStatsRead
+        description: |
+          Retrieve dashboard statistics between the specified start and end
+          times.
+        queryParameters:
+          interval:
+            required: true
+            displayName: interval
+            description: Specify a start and end time range in seconds
+    /statistics/dashboard/firewall:
        displayName: firewallStats
        description: Dashboard statistics
        get:
