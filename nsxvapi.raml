@@ -7864,6 +7864,12 @@ securitySchemes:
           Retrieve tunnel traffic statistics for specified time interval.
           Default is 1 hour. Other possible values are 1-60 minutes|oneDay|
           oneWeek|oneMonth|oneYear
+        queryParameters:
+          interval:
+            displayName: interval
+            description: |
+              Specify a range; can be 1 - 60 minutes, or oneDay|oneWeek|
+              oneMonth|oneYear. Default is 60 minutes
     /statistics/dashboard/interface:
       displayName: vnicDashStats
       description: Dashboard statistics
